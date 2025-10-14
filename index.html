@@ -30,6 +30,23 @@
       color: var(--text-main);
     }
 
+    /* --- NEW: Spotlight Cursor Effect --- */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 999;
+        background: radial-gradient(
+          circle at var(--cursor-x) var(--cursor-y),
+          rgba(88, 166, 255, 0.15) 0%, /* A subtle glow from your indigo accent color */
+          rgba(88, 166, 255, 0.0) 20%  /* Fades out to transparent */
+        );
+    }
+
     /* Geometric Hero Background */
     .hero-bg {
       background-color: var(--bg-dark);
@@ -383,6 +400,18 @@
 
     // Feather Icons
     feather.replace();
+
+    // --- NEW: Spotlight Cursor Logic ---
+    const body = document.body;
+    // Set initial position to the center
+    body.style.setProperty('--cursor-x', '50%');
+    body.style.setProperty('--cursor-y', '50%');
+
+    document.addEventListener('mousemove', e => {
+        // Update position on mouse move
+        body.style.setProperty('--cursor-x', e.clientX + 'px');
+        body.style.setProperty('--cursor-y', e.clientY + 'px');
+    });
   </script>
 </body>
 </html>
