@@ -9,142 +9,50 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
   <style>
-    /* --- Geometric & Light Theme Customizations --- */
-
-    :root {
-      --bg-light: #f8f9fa; 
-      --bg-medium-light: #ffffff; 
-      --border-color-light: #dee2e6;
-      --text-dark: #212529; 
-      --text-secondary-dark: #6c757d;
-      --accent-indigo: #007bff; 
-      --accent-teal: #17a2b8;
-    }
-
-    body {
-      background-color: var(--bg-light);
-      color: var(--text-dark);
-    }
-
-    body::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 999;
-        background: radial-gradient(
-          circle at var(--cursor-x) var(--cursor-y),
-          rgba(0, 123, 255, 0.1) 0%,
-          rgba(0, 123, 255, 0.0) 20%
-        );
-    }
-
-    /* UPDATED: Hero Background for full-page effect */
     .hero-bg {
-      background-color: var(--bg-light);
-      background-image:
-        linear-gradient(var(--border-color-light) 1px, transparent 1px),
-        linear-gradient(to right, var(--border-color-light) 1px, var(--bg-light) 1px);
-      background-size: 40px 40px;
-      position: relative;
-      /* NEW RULES FOR FULL-PAGE AND CENTERING */
-      min-height: 100vh; /* Make section at least as tall as the viewport */
-      display: flex; /* Enable flexbox for alignment */
-      align-items: center; /* Vertically center content */
-    }
-
-    .hexagon-mask {
-      -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    }
-
-    .angled-section {
-        position: relative;
-        padding-top: 8rem;
-        padding-bottom: 8rem;
-    }
-    .angled-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: inherit;
-        z-index: -1;
-        transform: skewY(-3deg);
-    }
-    
-    .project-card {
-      background-color: var(--bg-medium-light);
-      border: 1px solid var(--border-color-light);
-      transition: all 0.3s ease;
-      border-radius: 8px;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     }
     .project-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--accent-indigo);
-      box-shadow: 0 10px 30px rgba(0, 123, 255, 0.15);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
-    
     .skill-badge {
-      background-color: var(--bg-medium-light);
-      border: 1px solid var(--border-color-light);
-      clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
       transition: all 0.3s ease;
-      padding: 0.75rem 1.75rem;
-      color: var(--text-dark);
     }
     .skill-badge:hover {
       transform: scale(1.05);
-      background-color: var(--accent-indigo);
-      color: white;
-      border-color: var(--accent-indigo);
-    }
-    .skill-badge .feather {
-        margin-right: 0.5rem;
-    }
-
-    .title-underline {
-        width: 6rem;
-        height: 4px;
-        background-color: var(--accent-indigo);
-        margin: 1rem auto 2rem;
-        border-radius: 2px;
     }
   </style>
 </head>
-<body class="font-sans antialiased">
-  <div id="hero" class="relative overflow-hidden hero-bg">
-    <div class="absolute inset-0 z-0" id="vanta-bg"></div>
-    <div class="container mx-auto px-6 relative z-10">
+<body class="font-sans antialiased text-gray-800 bg-gray-50">
+  <!-- Hero Section with Vanta.js Globe -->
+  <div id="hero" class="relative overflow-hidden hero-bg text-white">
+    <div class="absolute inset-0 z-0" id="vanta-globe"></div>
+    <div class="container mx-auto px-6 py-24 md:py-32 relative z-10">
       <div class="flex flex-col md:flex-row items-center">
         <div class="md:w-1/3 mb-10 md:mb-0 flex justify-center">
-          <img src="https://avatars.githubusercontent.com/u/204045404?s=400&v=4" alt="Suraj Shrestha"
-               class="hexagon-mask h-48 w-48 md:h-64 md:w-64 object-cover border-4" style="border-color: var(--accent-indigo);">
+          <img src="https://avatars.githubusercontent.com/u/204045404?s=400&v=4" alt="Suraj Shrestha" 
+               class="rounded-full h-48 w-48 md:h-64 md:w-64 border-4 border-white shadow-xl">
         </div>
         <div class="md:w-2/3 md:pl-12 text-center md:text-left">
-          <h1 class="text-4xl md:text-6xl font-bold mb-4" style="color: var(--text-dark);" data-aos="fade-up">Suraj Shrestha</h1>
-          <h2 class="text-xl md:text-2xl font-semibold mb-6" style="color: var(--accent-teal);" data-aos="fade-up" data-aos-delay="100">
+          <h1 class="text-4xl md:text-6xl font-bold mb-4" data-aos="fade-up">Suraj Shrestha</h1>
+          <h2 class="text-xl md:text-2xl font-semibold mb-6" data-aos="fade-up" data-aos-delay="100">
             Statistics Major at Truman State University
           </h2>
-          <p class="text-lg md:text-xl mb-8 max-w-2xl" style="color: var(--text-secondary-dark);" data-aos="fade-up" data-aos-delay="200">
-            Passionate data science and analytics professional with expertise in statistical modeling, predictive analytics,
+          <p class="text-lg md:text-xl mb-8 max-w-2xl" data-aos="fade-up" data-aos-delay="200">
+            Passionate data science and analytics professional with expertise in statistical modeling, predictive analytics, 
             and machine learning. Transforming complex data into actionable insights.
           </p>
           <div class="flex justify-center md:justify-start space-x-4" data-aos="fade-up" data-aos-delay="300">
-            <a href="https://github.com/suraj9434" target="_blank"
-               class="bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition flex items-center shadow-lg">
+            <a href="https://github.com/suraj9434" target="_blank" 
+               class="bg-white text-blue-800 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition flex items-center">
               <i data-feather="github" class="mr-2"></i> GitHub
             </a>
-            <a href="#projects"
-               class="border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-md font-semibold hover:bg-blue-600 hover:text-white transition flex items-center">
+            <a href="#projects" 
+               class="border-2 border-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-800 transition flex items-center">
               <i data-feather="eye" class="mr-2"></i> View Projects
             </a>
           </div>
@@ -153,113 +61,300 @@
     </div>
   </div>
 
-  <section class="angled-section" style="background: var(--bg-medium-light);">
-    <div class="container mx-auto px-6 relative z-10">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">Technical Skills</h2>
-        <div class="title-underline" data-aos="fade-up" data-aos-delay="100"></div>
-      </div>
-      
-      <div class="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
-        <div class="skill-badge flex items-center"><i data-feather="database" style="color: var(--accent-teal);"></i> Microsoft SQL Server</div>
-        <div class="skill-badge flex items-center"><i data-feather="database" style="color: var(--accent-teal);"></i> NoSQL (MongoDB)</div>
-        <div class="skill-badge flex items-center"><i data-feather="database" style="color: var(--accent-teal);"></i> Snowflake</div>
-        <div class="skill-badge flex items-center"><i data-feather="cloud" style="color: var(--accent-teal);"></i> Azure</div>
-        <div class="skill-badge flex items-center"><i data-feather="cloud" style="color: var(--accent-teal);"></i> AWS</div>
-        <div class="skill-badge flex items-center"><i data-feather="pie-chart" style="color: var(--accent-teal);"></i> Power BI</div>
-        <div class="skill-badge flex items-center"><i data-feather="bar-chart-2" style="color: var(--accent-teal);"></i> Tableau</div>
-        <div class="skill-badge flex items-center"><i data-feather="bar-chart" style="color: var(--accent-teal);"></i> Looker</div>
-        <div class="skill-badge flex items-center"><i data-feather="code" style="color: var(--accent-teal);"></i> Python</div>
-        <div class="skill-badge flex items-center"><i data-feather="terminal" style="color: var(--accent-teal);"></i> PowerShell</div>
-        <div class="skill-badge flex items-center"><i data-feather="cpu" style="color: var(--accent-teal);"></i> PySpark</div>
-        <div class="skill-badge flex items-center"><i data-feather="database" style="color: var(--accent-teal);"></i> SQL</div>
-        <div class="skill-badge flex items-center"><i data-feather="database" style="color: var(--accent-teal);"></i> NoSQL</div>
-        <div class="skill-badge flex items-center"><i data-feather="rss" style="color: var(--accent-teal);"></i> R</div>
-        <div class="skill-badge flex items-center"><i data-feather="box" style="color: var(--accent-teal);"></i> Azure Databricks</div>
-        <div class="skill-badge flex items-center"><i data-feather="git-pull-request" style="color: var(--accent-teal);"></i> Data Factory</div>
-        <div class="skill-badge flex items-center"><i data-feather="layers" style="color: var(--accent-teal);"></i> Azure Synapse</div>
-        <div class="skill-badge flex items-center"><i data-feather="grid" style="color: var(--accent-teal);"></i> DAX</div>
-        <div class="skill-badge flex items-center"><i data-feather="clipboard" style="color: var(--accent-teal);"></i> VBA</div>
-        <div class="skill-badge flex items-center"><i data-feather="book" style="color: var(--accent-teal);"></i> Jupyter Notebook</div>
-        <div class="skill-badge flex items-center"><i data-feather="git-merge" style="color: var(--accent-teal);"></i> Git</div>
-      </div>
+  <!-- Skills Section -->
+<section class="py-20 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">Technical Skills</h2>
+      <div class="w-24 h-1 bg-blue-600 mx-auto mb-8" data-aos="fade-up" data-aos-delay="100"></div>
     </div>
-  </section>
+    
+    <div class="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
+      <!-- Databases/ETL -->
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="database" class="text-blue-600 mr-2"></i> Microsoft SQL Server</div>
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="database" class="text-blue-600 mr-2"></i> NoSQL (MongoDB)</div>
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="database" class="text-blue-600 mr-2"></i> Snowflake</div>
+
+      <!-- Cloud Platforms -->
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="cloud" class="text-blue-600 mr-2"></i> Azure</div>
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="cloud" class="text-blue-600 mr-2"></i> AWS</div>
+
+      <!-- Visualization Tools -->
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="pie-chart" class="text-blue-600 mr-2"></i> Power BI</div>
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="bar-chart-2" class="text-blue-600 mr-2"></i> Tableau</div>
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="bar-chart" class="text-blue-600 mr-2"></i> Looker</div>
+
+      <!-- Programming -->
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="code" class="text-blue-600 mr-2"></i> Python</div>
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="terminal" class="text-blue-600 mr-2"></i> PowerShell</div>
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="cpu" class="text-blue-600 mr-2"></i> PySpark</div>
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="database" class="text-blue-600 mr-2"></i> SQL</div>
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="database" class="text-blue-600 mr-2"></i> NoSQL</div>
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="rss" class="text-blue-600 mr-2"></i> R</div>
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="box" class="text-blue-600 mr-2"></i> Azure Databricks</div>
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="git-pull-request" class="text-blue-600 mr-2"></i> Data Factory</div>
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="layers" class="text-blue-600 mr-2"></i> Azure Synapse</div>
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="grid" class="text-blue-600 mr-2"></i> DAX</div>
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="clipboard" class="text-blue-600 mr-2"></i> VBA</div>
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="book" class="text-blue-600 mr-2"></i> Jupyter Notebook</div>
+      <div class="skill-badge bg-white px-6 py-3 rounded-full shadow-sm flex items-center"><i data-feather="git-merge" class="text-blue-600 mr-2"></i> Git</div>
+    </div>
+  </div>
+</section>
 
 
-  <section id="projects" class="angled-section" style="background: var(--bg-light);">
-    <div class="container mx-auto px-6 relative z-10">
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">Featured Projects</h2>
-        <div class="title-underline" data-aos="fade-up" data-aos-delay="100"></div>
+        <div class="w-24 h-1 bg-blue-600 mx-auto mb-8" data-aos="fade-up" data-aos-delay="100"></div>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         
-        <div class="project-card overflow-hidden" data-aos="fade-up">
-          <div class="h-48 overflow-hidden"><img src="thumbnail1.png" alt="Predicting Hypertension" class="w-full h-full object-cover"></div>
+        <!-- Predicting Hypertension -->
+        <div class="project-card bg-gray-50 rounded-xl overflow-hidden shadow-md transition duration-300" data-aos="fade-up">
+          <div class="h-48 overflow-hidden">
+            <img src="thumbnail1.png" alt="Predicting Hypertension" class="w-full h-full object-cover">
+          </div>
           <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Predicting Hypertension</h3>
-            <p class="text-gray-600 mb-4">Built predictive models on Framingham Heart Study data to identify hypertension risk. Achieved high performance with Logistic Regression and Random Forest.</p>
+            <h3 class="text-xl font-semibold mb-2">Predicting Hypertension (Framingham Study)</h3>
+            <p class="text-gray-600 mb-4">
+              Built predictive models on Framingham Heart Study data to identify hypertension risk. 
+              Identified and removed data leakage, achieved high performance with Logistic Regression and Random Forest.
+            </p>
             <div class="flex flex-wrap gap-2 mb-4">
               <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">R</span>
               <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Tidyverse</span>
+              <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Tidymodels</span>
               <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Machine Learning</span>
             </div>
-            <a href="https://github.com/suraj9434/Predicting_Hypertension" target="_blank" class="text-blue-600 font-medium flex items-center hover:text-blue-800">View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i></a>
+            <a href="https://github.com/suraj9434/Predicting_Hypertension" target="_blank" 
+               class="text-blue-600 font-medium flex items-center hover:text-blue-800">
+              View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+            </a>
           </div>
         </div>
 
-        <div class="project-card overflow-hidden" data-aos="fade-up">
-          <div class="h-48 overflow-hidden"><img src="https://www.bressmanlaw.com/wp-content/uploads/2020/07/car-accidents-what-is-considered-a-serious-car-accident.jpg" alt="US Road Accidents EDA" class="w-full h-full object-cover"></div>
+        <!-- US Road Accidents -->
+        <div class="project-card bg-gray-50 rounded-xl overflow-hidden shadow-md transition duration-300" data-aos="fade-up">
+          <div class="h-48 overflow-hidden">
+            <img src="https://www.bressmanlaw.com/wp-content/uploads/2020/07/car-accidents-what-is-considered-a-serious-car-accident.jpg" alt="US Road Accidents EDA" class="w-full h-full object-cover">
+          </div>
           <div class="p-6">
             <h3 class="text-xl font-semibold mb-2">US Road Accidents (2016–2022)</h3>
-            <p class="text-gray-600 mb-4">Conducted EDA of road accidents, focusing on trends, weather, and road features. Published an interactive RPubs dashboard with actionable recommendations.</p>
+            <p class="text-gray-600 mb-4">
+              Conducted exploratory data analysis of road accidents across the U.S. focusing on 
+              trends, weather, and road features. Identified key patterns and published an interactive RPubs dashboard 
+              translating findings into actionable recommendations for road safety, urban planning, and policy design.
+.
+            </p>
             <div class="flex flex-wrap gap-2 mb-4">
               <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">R</span>
+              <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">tidyverse</span>
               <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">flexdashboard</span>
               <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">EDA</span>
             </div>
             <div class="flex flex-col space-y-2">
-              <a href="https://github.com/suraj9434/US_Accidents_EDA" target="_blank" class="text-blue-600 font-medium flex items-center hover:text-blue-800">View Code <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i></a>
-              <a href="https://rpubs.com/surajshrestha7494/1346885" target="_blank" class="text-blue-600 font-medium flex items-center hover:text-blue-800">View Dashboard <i data-feather="external-link" class="ml-2 w-4 h-4"></i></a>
+              <a href="https://github.com/suraj9434/US_Accidents_EDA" target="_blank" class="text-blue-600 font-medium flex items-center hover:text-blue-800">
+                View Code <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+              </a>
+              <a href="https://rpubs.com/surajshrestha7494/1346885" target="_blank" class="text-blue-600 font-medium flex items-center hover:text-blue-800">
+                View Dashboard <i data-feather="external-link" class="ml-2 w-4 h-4"></i>
+              </a>
             </div>
           </div>
         </div>
 
+        <!-- Graduate Student Survey Analysis -->
+<div class="project-card bg-gray-50 rounded-xl overflow-hidden shadow-md transition duration-300" data-aos="fade-up">
+  <div class="h-48 overflow-hidden">
+    <img src="thumbnail3.png" alt="Graduate Student Survey Analysis" class="w-full h-full object-cover">
+  </div>
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2">Graduate Student Survey Analysis</h3>
+    <p class="text-gray-600 mb-4">
+      My team conducted a survey-based study to explore factors influencing graduate student enrollment and satisfaction at Truman State University. 
+      Analyzed responses using RStudio and Minitab, uncovering key insights on motivations, decision-making, and areas for program improvement.
+    </p>
+    <div class="flex flex-wrap gap-2 mb-4">
+      <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">R</span>
+      <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Minitab</span>
+      <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Survey Analysis</span>
+      <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Data Visualization</span>
+    </div>
+    <a href="https://github.com/suraj9434/Graduate-Student-Survey-Analysis" target="_blank" 
+       class="text-blue-600 font-medium flex items-center hover:text-blue-800">
+      View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+    </a>
+  </div>
+</div>
+
+        <!-- Food Marketing Data Analysis --> 
+        <div class="project-card bg-gray-50 rounded-xl overflow-hidden shadow-md transition duration-300" data-aos="fade-up" data-aos-delay="200"> 
+          <div class="h-48 overflow-hidden"> 
+            <img src="http://static.photos/food/640x360/3" alt="Food Marketing Data Analysis" class="w-full h-full object-cover"> 
+          </div> 
+          <div class="p-6"> 
+            <h3 class="text-xl font-semibold mb-2">Food Marketing Data Analysis</h3> 
+            <p class="text-gray-600 mb-4"> Statistical analysis of food marketing data to identify consumer trends and optimize marketing strategies. 
+            </p> 
+            <div class="flex flex-wrap gap-2 mb-4"> 
+              <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Python</span> 
+              <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Jupyter</span> 
+              <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Pandas</span> 
+              <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Seaborn</span> 
+            </div> 
+            <a href="https://github.com/suraj9434/food_marketing_data_analysis/blob/main/Food_Marketing_Data_Analysis_project.ipynb" target="_blank" 
+              class="text-blue-600 font-medium flex items-center hover:text-blue-800"> 
+              View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i> 
+            </a> 
+          </div> 
         </div>
 
+        <!-- World Life Expectancy (SQL Based) -->
+      <div class="project-card bg-gray-50 rounded-xl overflow-hidden shadow-md transition duration-300" data-aos="fade-up" data-aos-delay="100">
+        <div class="h-48 overflow-hidden">
+          <img src="https://www.news-medical.net/images/news/ImageForNews_705800_16461320916939377.jpg" alt="World Life Expectancy EDA" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">World Life Expectancy EDA (SQL Based)</h3>
+          <p class="text-gray-600 mb-4">
+            Cleaned and explored global health datasets with SQL, uncovering trends in 
+            <em>life expectancy, disease impact, and socioeconomic factors</em>. 
+            Results highlight regional disparities and provide insights for policy and healthcare planning.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">SQL</span>
+            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Data Cleaning</span>
+            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Health Data</span>
+            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Window Functions</span>
+
+          </div>
+          <a href="https://github.com/suraj9434/World_Life_Expectancy_EDA" target="_blank" class="text-blue-600 font-medium flex items-center hover:text-blue-800">
+            View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+        <!-- Tesla Project -->
+        <div class="project-card bg-gray-50 rounded-xl overflow-hidden shadow-md transition duration-300" data-aos="fade-up">
+          <div class="h-48 overflow-hidden">
+            <img src="https://wallpapers.com/images/featured/tesla-olny3d2960kbjdtk.jpg" alt="Tesla" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Tesla in Washington</h3>
+            <p class="text-gray-600 mb-4">
+              Analysis of Tesla’s sales and EV market share in Washington state, 
+              highlighting adoption patterns and policy-driven growth.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">R</span>
+              <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Data Visualization</span>
+              <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Dashboard</span>
+
+            </div>
+            <a href="https://rpubs.com/surajshrestha7494/1346455" target="_blank" 
+               class="text-blue-600 font-medium flex items-center hover:text-blue-800">
+              View Dashboard <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Interactive HR Diagram App -->
+        <div class="project-card bg-gray-50 rounded-xl overflow-hidden shadow-md transition duration-300" data-aos="fade-up">
+          <div class="h-48 overflow-hidden">
+            <img src="thumbnail2.jpg" alt="HR Diagram App" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Interactive HR Diagram App</h3>
+            <p class="text-gray-600 mb-4">
+              Developed a Shiny web app for visualizing nearby stars with an interactive 
+              Hertzsprung-Russell diagram. Supports dynamic filtering and spectral type 
+              annotations for astronomy students and researchers.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">R</span>
+              <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Shiny</span>
+              <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">ggplot2</span>
+              <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Data Visualization</span>
+            </div>
+            <a href="https://surajshrestha.shinyapps.io/Interactive_Hertzsprung_Russell_Diagram_App/" target="_blank" 
+               class="text-blue-600 font-medium flex items-center hover:text-blue-800">
+              View App <i data-feather="external-link" class="ml-2 w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+
+        <!-- HR Analytics Dashboard -->
+        <div class="project-card bg-gray-50 rounded-xl overflow-hidden shadow-md transition duration-300" data-aos="fade-up">
+          <div class="h-48 overflow-hidden">
+            <img src="https://miro.medium.com/v2/resize:fit:1400/0*IHHydAjBYy9N6049.jpg" alt="HR Analytics" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">HR Analytics Dashboard</h3>
+            <p class="text-gray-600 mb-4">
+              PowerBI dashboard analyzing employee attrition trends and workforce performance indicators.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">PowerBI</span>
+              <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Dashboard</span>
+            </div>
+            <a href="https://github.com/suraj9434/HR_Analytics_Dashboard" target="_blank" 
+               class="text-blue-600 font-medium flex items-center hover:text-blue-800">
+              View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- More Projects -->
       <div class="flex justify-center mt-16" data-aos="fade-up">
-        <div class="project-card p-8 text-center max-w-md">
+        <div class="project-card bg-gray-50 rounded-xl overflow-hidden shadow-md transition duration-300 p-8 text-center max-w-md">
           <h3 class="text-xl font-semibold mb-4">Explore More Projects</h3>
-          <p class="text-gray-600 mb-6">Check out additional data science, machine learning, and visualization projects on my GitHub portfolio.</p>
-          <a href="https://github.com/suraj9434" target="_blank" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition">🔗 View More on GitHub</a>
+          <p class="text-gray-600 mb-6">
+            Check out additional data science, machine learning, and visualization projects 
+            on my GitHub portfolio.
+          </p>
+          <a href="https://github.com/suraj9434" target="_blank" 
+             class="inline-block bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition">
+            🔗 View More on GitHub
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="angled-section" style="background: var(--bg-medium-light);">
-    <div class="container mx-auto px-6 relative z-10">
+  <!-- Contact -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">Get In Touch</h2>
-        <div class="title-underline" data-aos="fade-up" data-aos-delay="100"></div>
-        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">Interested in collaborating or learning more about my work? Feel free to reach out!</p>
+        <div class="w-24 h-1 bg-blue-600 mx-auto mb-8" data-aos="fade-up" data-aos-delay="100"></div>
+        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+          Interested in collaborating or learning more about my work? Feel free to reach out!
+        </p>
       </div>
       
-      <div class="max-w-2xl mx-auto bg-white border border-gray-200 rounded-lg shadow-sm p-8" data-aos="fade-up">
+      <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-sm p-8" data-aos="fade-up">
         <div class="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-8">
           <div class="flex items-center">
-            <div class="bg-blue-100 p-3 rounded-full mr-4"><i data-feather="mail" class="text-blue-600 w-6 h-6"></i></div>
+            <div class="bg-blue-100 p-3 rounded-full mr-4">
+              <i data-feather="mail" class="text-blue-600 w-6 h-6"></i>
+            </div>
             <div>
-              <h3 class="font-semibold text-gray-800">Email</h3>
+              <h3 class="font-semibold text-gray-700">Email</h3>
               <a href="mailto:nizusshrestha@gmail.com" class="text-blue-600 hover:text-blue-800">surajshrestha4194@gmail.com</a>
             </div>
           </div>
           <div class="flex items-center">
-            <div class="bg-blue-100 p-3 rounded-full mr-4"><i data-feather="github" class="text-blue-600 w-6 h-6"></i></div>
+            <div class="bg-blue-100 p-3 rounded-full mr-4">
+              <i data-feather="github" class="text-blue-600 w-6 h-6"></i>
+            </div>
             <div>
-              <h3 class="font-semibold text-gray-800">GitHub</h3>
+              <h3 class="font-semibold text-gray-700">GitHub</h3>
               <a href="https://github.com/suraj9434" target="_blank" class="text-blue-600 hover:text-blue-800">github.com/suraj9434</a>
             </div>
           </div>
@@ -268,27 +363,30 @@
     </div>
   </section>
 
-  <footer class="bg-gray-800 text-white py-12">
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
     <div class="container mx-auto px-6">
       <div class="flex flex-col md:flex-row justify-between items-center">
-        <div class="mb-6 md:mb-0 text-center md:text-left">
-          <h2 class="text-2xl font-bold text-white">Suraj Shrestha</h2>
+        <div class="mb-6 md:mb-0">
+          <h2 class="text-2xl font-bold">Suraj Shrestha</h2>
           <p class="text-gray-400 mt-2">Data Enthusiast</p>
         </div>
         <div class="flex space-x-6">
-          <a href="https://github.com/suraj9434" target="_blank" class="text-gray-400 hover:text-white transition"><i data-feather="github" class="w-6 h-6"></i></a>
+          <a href="https://github.com/suraj9434" target="_blank" class="text-gray-400 hover:text-white transition">
+            <i data-feather="github" class="w-6 h-6"></i>
+          </a>
         </div>
       </div>
-      <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
         <p>&copy; Suraj Shrestha. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
   <script>
-    // Initialize Vanta.js NET with Light Theme
-    VANTA.NET({
-      el: "#vanta-bg",
+    // Initialize Vanta.js globe
+    VANTA.GLOBE({
+      el: "#vanta-globe",
       mouseControls: true,
       touchControls: true,
       gyroControls: false,
@@ -296,11 +394,9 @@
       minWidth: 200.00,
       scale: 1.00,
       scaleMobile: 1.00,
-      color: 0x007bff,
-      backgroundColor: 0xf8f9fa,
-      points: 12.00,
-      maxDistance: 25.00,
-      spacing: 18.00
+      color: 0x3a86ff,
+      backgroundColor: 0x1e3c72,
+      size: 0.8
     });
 
     // Initialize AOS
@@ -308,16 +404,8 @@
 
     // Feather Icons
     feather.replace();
-
-    // Spotlight Cursor Logic
-    const body = document.body;
-    body.style.setProperty('--cursor-x', '50%');
-    body.style.setProperty('--cursor-y', '50%');
-
-    document.addEventListener('mousemove', e => {
-        body.style.setProperty('--cursor-x', e.clientX + 'px');
-        body.style.setProperty('--cursor-y', e.clientY + 'px');
-    });
   </script>
 </body>
 </html>
+
+
